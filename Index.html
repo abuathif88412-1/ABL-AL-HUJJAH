@@ -331,6 +331,33 @@
 <div id="root"></div>
 
 <script>
+  /* ======================= POLYFILL: window.storage pakai localStorage ======================= */
+if (!window.storage) {
+  window.storage = {
+    async get(key, shared) {
+      const raw = localStorage.getItem('abl_' + key);
+      if (raw === null) return null;
+      return { key, value: raw, shared: !!shared };
+    },
+    async set(key, value, shared) {
+      localStorage.setItem('abl_' + key, value);
+      return { key, value, shared: !!shared };
+    },
+    async delete(key, shared) {
+      localStorage.removeItem('abl_' + key);
+      return { key, deleted: true, shared: !!shared };
+    },
+    async list(prefix, shared) {
+      const keys = [];
+      const p = 'abl_' + (prefix || '');
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(p)) keys.push(k.slice(4));
+      }
+      return { keys, prefix, shared: !!shared };
+    }
+  };
+}
 /* ======================= STATE & CONSTANTS ======================= */
 const PALETTE = [
   {name:'terracotta', hex:'#C1502E'},
