@@ -1055,8 +1055,7 @@ function renderLogin(){
       </form>
       <div class="login-divider">atau</div>
       <button class="add-participant-card" style="width:100%;" onclick="openModal('addParticipant')">+ Buat Akun Peserta Baru</button>
-      ${ hasDefaultAccounts ? `<div class="demo-hint">Akun contoh &mdash; admin: <b>admin</b> / <b>admin123</b> &middot; peserta: <b>peserta1</b> / <b>peserta123</b></div>` : '' }
-    </div>
+      ${'' }
   </div>`;
 }
 
@@ -1315,7 +1314,7 @@ function renderModal(){
     const cl = autoEnrollClassroomId ? STATE.classrooms.find(c=>c.id===autoEnrollClassroomId) : null;
     inner = `
       <h3>Tambah Peserta</h3>
-      <p class="muted">${cl ? ('Akun baru akan otomatis didaftarkan ke kelas "' + escapeHtml(cl.name) + '".') : 'Buat akun baru untuk peserta atau admin lain.'}</p>
+      <p class="muted">${cl ? ('Akun baru akan otomatis didaftarkan ke kelas "' + escapeHtml(cl.name) + '".') : 'Buat akun baru untuk peserta'}</p>
       <form onsubmit="submitAddParticipant(event)">
         <div class="field"><label>Nama lengkap</label><input id="inp-p-name" placeholder="mis. Siti Amalia" autofocus></div>
         <div class="field"><label>Username</label><input id="inp-p-username" placeholder="mis. siti.amalia" autocomplete="off"></div>
