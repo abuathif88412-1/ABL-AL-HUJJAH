@@ -1328,7 +1328,7 @@ function renderModal(){
         <div class="field"><label>Peran</label>
           <select id="inp-p-role">
             <option value="siswa">Peserta</option>
-            <option value="admin" ${STATE.currentUser?.role === 'admin' ? '<option value="admin">Admin</option>' : ''}
+            $<option value="admin" ${STATE.currentUser?.role === 'admin' ? '<option value="admin">Admin</option>' : ''}
           </select>
         </div>
         <div class="modal-actions">
